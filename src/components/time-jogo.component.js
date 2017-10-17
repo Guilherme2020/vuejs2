@@ -1,3 +1,4 @@
+import event from '../event';
 export default {
   
     template: `
@@ -23,6 +24,11 @@ export default {
                 </div>
            
    `,
+    mounted(){
+        event.$on('get-times', (times) =>{
+            this.initJogo(times);
+        })
+    },
     data(){
         return{
            novoJogo:{
@@ -43,17 +49,19 @@ export default {
             let gols = +this.novoJogo.casa.gols;
             let golsAdversario = +this.novoJogo.fora.gols;
             this.novoJogo.casa.time.fimJogo(timeAdversario,gols,golsAdversario);
-            this.showView('tabela');
+            // this.$parent.showView('tabela');
+            event.$emit('show-time-list');
+            
         },
-        novoJogo(){
+        initJogo(times){
             let indexCasa = Math.floor(Math.random() * 20),
                 indexFora = Math.floor(Math.random() * 20);
 
-            this.novoJogo.casa.time = this.times[indexCasa];
+            this.novoJogo.casa.time = times[indexCasa];
             this.novoJogo.casa.gols = 0;
-            this.novoJogo.fora.time = this.times[indexFora];
+            this.novoJogo.fora.time = times[indexFora];
             this.novoJogo.fora.gols = 0;
-            this.showView('novojogo');
+            // this.showView('novojogo');
         },
         showView(view){
             this.view = view;

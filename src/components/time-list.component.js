@@ -1,6 +1,7 @@
 import {Time} from '../time';
 
 import _ from 'lodash';
+import event from '../event';
 
 export default {
     template: `
@@ -81,14 +82,20 @@ export default {
     methods:{
 
         showNovoJogo(){
-            let indexCasa = Math.floor(Math.random() * 20),
-                indexFora = Math.floor(Math.random() * 20);
+            // let indexCasa = Math.floor(Math.random() * 20),
+            //     indexFora = Math.floor(Math.random() * 20);
 
-            this.novoJogo.casa.time = this.times[indexCasa];
-            this.novoJogo.casa.gols = 0;
-            this.novoJogo.fora.time = this.times[indexFora];
-            this.novoJogo.fora.gols = 0;
-            this.$parent.showView('novojogo');
+            // this.novoJogo.casa.time = this.times[indexCasa];
+            // this.novoJogo.casa.gols = 0;
+            // this.novoJogo.fora.time = this.times[indexFora];
+            // this.novoJogo.fora.gols = 0;
+            // this.$parent.showView('novojogo');
+            event.$emit('show-time-novo-jogo');
+            event.$emit('get-times',this.times);
+            // this.$parent.$children[1].initJogo(this.times);
+            // setTimeout(() => {
+               
+            // });
         },
 
         sortBy(coluna){
