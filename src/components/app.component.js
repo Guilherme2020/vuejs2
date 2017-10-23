@@ -45,11 +45,11 @@ export default {
             // return this.$store.state.view;
         }
     },
-    methods:{
+    // methods:{
      
-        showView(view){
-            this.view = view;
-        }
+    //     showView(view){
+    //         this.view = view;
+    //     }
     
-    }
+    // }
 };

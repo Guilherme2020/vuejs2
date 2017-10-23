@@ -35,6 +35,9 @@ export default {
                 </div>
             
    `,
+   created(){
+        store.dispatch('load-times');
+   },
     data(){
         return{
             //  novoJogo:{
@@ -71,12 +74,13 @@ export default {
             // this.novoJogo.fora.time = this.times[indexFora];
             // this.novoJogo.fora.gols = 0;
             // this.$parent.showView('novojogo');
-            event.$emit('show-time-novo-jogo');
-            event.$emit('get-times',this.times);
+            // event.$emit('show-time-novo-jogo');
+            // event.$emit('get-times',this.times);
             // this.$parent.$children[1].initJogo(this.times);
             // setTimeout(() => {
                
             // });
+             store.commit('show-time-novojogo');
         },
 
         sortBy(coluna){

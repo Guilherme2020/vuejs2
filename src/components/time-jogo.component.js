@@ -1,4 +1,5 @@
 // import event from '../event';
+import store from '../store';
 export default {
   
     template: `
@@ -29,6 +30,9 @@ export default {
     //         this.initJogo(times);
     //     })
     // },
+    mounted(){
+        this.initJogo(store.state.times);
+    },
     data(){
         return{
            novoJogo:{
@@ -46,12 +50,15 @@ export default {
     methods:{
         fimJogo(){
             let timeAdversario = this.novoJogo.fora.time;
+            let timeCasa = this.novoJogo.casa.time
             let gols = +this.novoJogo.casa.gols;
             let golsAdversario = +this.novoJogo.fora.gols;
-            this.novoJogo.casa.time.fimJogo(timeAdversario,gols,golsAdversario);
+            timeCasa.fimJogo(timeAdversario,gols,golsAdversario);
             // this.$parent.showView('tabela');
-            event.$emit('show-time-list');
+            store.commit('update',timeCasa);
             
+            store.commit('update',timeAdversario);            
+            store.commit('show-time-list');
         },
         initJogo(times){
             let indexCasa = Math.floor(Math.random() * 20),
