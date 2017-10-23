@@ -1,4 +1,4 @@
-import event from '../event';
+// import event from '../event';
 export default {
   
     template: `
@@ -24,11 +24,11 @@ export default {
                 </div>
            
    `,
-    mounted(){
-        event.$on('get-times', (times) =>{
-            this.initJogo(times);
-        })
-    },
+    // mounted(){
+    //     event.$on('get-times', (times) =>{
+    //         this.initJogo(times);
+    //     })
+    // },
     data(){
         return{
            novoJogo:{
